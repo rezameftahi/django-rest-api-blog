@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{web_address}}/blog/api/v1/post/5/"
+method: GET
+order: 2000

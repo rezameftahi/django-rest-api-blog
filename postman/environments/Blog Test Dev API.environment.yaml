@@ -1,0 +1,4 @@
+name: Blog Test Dev API
+values:
+  - key: web_address
+    value: 'http://localhost:8000'

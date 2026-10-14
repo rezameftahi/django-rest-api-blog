@@ -2,3 +2,6 @@ Django>=5.2,<6.0
 psycopg[binary]
 python-decouple==3.8
 Pillow
+djangorestframework
+markdown
+django-filter

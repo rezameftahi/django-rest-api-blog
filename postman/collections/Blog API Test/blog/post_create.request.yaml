@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{web_address}}/blog/api/v1/post/"
+method: POST
+body:
+  type: json
+  content: |2-
+        {
+            "image": null,
+            "title": "postman",
+            "content": "postman",
+            "status": true,
+            "updated_date": "2026-10-11T11:44:51.834064Z",
+            "published_date": "2026-10-10T00:00:00Z",
+            "author": 2,
+            "category": 1
+        }
+order: 3000

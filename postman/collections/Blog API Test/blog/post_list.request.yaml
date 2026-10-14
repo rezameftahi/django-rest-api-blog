@@ -1,0 +1,10 @@
+$kind: http-request
+description: ""
+url: "{{web_address}}/blog/api/v1/post/"
+method: GET
+auth:
+  type: basic
+  credentials:
+    username: admin@admin.com
+    password: "123"
+order: 1000

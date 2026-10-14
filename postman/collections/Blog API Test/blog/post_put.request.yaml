@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{web_address}}/blog/api/v1/post/7/"
+method: PUT
+body:
+  type: json
+  content: |-
+    {
+        "image": null,
+        "title": "postman-edited",
+        "content": "postman",
+        "status": true,
+        "published_date": "2023-10-01T00:00:00Z",
+        "author": 1
+    }
+order: 4000
