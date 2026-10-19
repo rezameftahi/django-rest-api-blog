@@ -1,0 +1,46 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/category/:id/"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Basic <credentials>
+      description: "Added as a part of security scheme: basic"
+  pathVariables:
+    - key: id
+      value: "8223"
+      disabled: false
+      description: A unique integer value identifying this category.
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "name": "string",
+        "id": 9749
+      }
+    $type: |-
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 250,
+            "title": "Name"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+order: 1000

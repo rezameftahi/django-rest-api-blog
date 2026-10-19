@@ -1,0 +1,31 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/category/"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "string"
+    }
+  $type: |-
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 250,
+          "title": "Name"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+settings: {}
+examples: ./.resources/category create.resources/examples
+order: 2000

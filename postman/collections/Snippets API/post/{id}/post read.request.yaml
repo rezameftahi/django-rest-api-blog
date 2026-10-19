@@ -1,0 +1,29 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/post/:id/"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "8223"
+    disabled: false
+    description: A unique integer value identifying this post.
+    $type: |-
+      {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+body:
+  type: text
+  content: ""
+settings: {}
+examples: ./.resources/post read.resources/examples
+order: 1000

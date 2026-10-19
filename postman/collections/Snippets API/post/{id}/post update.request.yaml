@@ -1,0 +1,74 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/post/:id/"
+method: PUT
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "8223"
+    disabled: false
+    description: A unique integer value identifying this post.
+    $type: |-
+      {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+body:
+  type: json
+  content: |-
+    {
+      "title": "string",
+      "content": "string",
+      "category": "string",
+      "published_date": "1992-08-04T15:48:29.927Z",
+      "status": true
+    }
+  $type: |-
+    {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 250,
+          "title": "Title"
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Content"
+        },
+        "category": {
+          "type": "string",
+          "title": "Category"
+        },
+        "published_date": {
+          "type": "string",
+          "title": "Published date",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "boolean",
+          "title": "Status"
+        }
+      },
+      "required": [
+        "title",
+        "content",
+        "category",
+        "published_date",
+        "status"
+      ]
+    }
+settings: {}
+examples: ./.resources/post update.resources/examples
+order: 2000

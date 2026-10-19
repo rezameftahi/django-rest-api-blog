@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'accounts',
     'blog',
     "rest_framework",
+    'rest_framework.authtoken',
+    'django_filters',
+    'drf_yasg',
+    
 ]
 
 MIDDLEWARE = [
@@ -140,4 +144,14 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.IsAuthenticated',
     # ]
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+    
 }
+
+

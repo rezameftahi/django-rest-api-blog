@@ -1,0 +1,144 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/post/?category__in=string&category=string&author=string&status=string&search=string&ordering=string&page=8223"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Basic <credentials>
+      description: "Added as a part of security scheme: basic"
+  queryParams:
+    - key: category__in
+      value: string
+      disabled: false
+      description: ""
+    - key: category
+      value: string
+      disabled: false
+      description: ""
+    - key: author
+      value: string
+      disabled: false
+      description: ""
+    - key: status
+      value: string
+      disabled: false
+      description: ""
+    - key: search
+      value: string
+      disabled: false
+      description: A search term.
+    - key: ordering
+      value: string
+      disabled: false
+      description: Which field to use when ordering the results.
+    - key: page
+      value: "8223"
+      disabled: false
+      description: A page number within the paginated result set.
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "count": 8187,
+        "results": [
+          {
+            "title": "string",
+            "content": "string",
+            "category": "string",
+            "published_date": "1959-09-30T14:01:29.647Z",
+            "status": false,
+            "id": 4386,
+            "author": 887,
+            "snippet": "string",
+            "image": "https://kyoeeCWUeWkKycFaRzfdhTaYVoJc.engufGcy2SsIQRYMQBuUDxbpSCwkMK9.UTl6ckFNuNZFAVbLgrI0+F3Vfs-o",
+            "relative_url": "http://XWZHbxWLvClBgUwsLHSBCDfBeA.xnmc0qlXuibXAbTIDJb,SImshQTlESVMMEOtDmR7GtBA",
+            "absolute_url": "string"
+          },
+          {
+            "title": "string",
+            "content": "string",
+            "category": "string",
+            "published_date": "1965-03-22T05:40:14.487Z",
+            "status": false,
+            "id": 2633,
+            "author": 297,
+            "snippet": "string",
+            "image": "https://lmmPgXC.ludpCGxkTfhpvY.1",
+            "relative_url": "http://NFZCuMizlVjNWcYAtpOUPqq.tuji9caaE6S-v+CV,TPWlNA.ogtHuwO+1T51TNEBSVqO0",
+            "absolute_url": "string"
+          }
+        ],
+        "next": "http://Cq.xsWSDPv9i+TQJRwmo76EeVJlbTVF.Z8Gg9uwIXpy4EFjRhzHMY7vrxtBY6B0VqAeGPJa,zIv",
+        "previous": "https://lMcuvXLshk.lluzaGPbUWXUaggLgvV69.ROH7SvOjujbg2xflErqLPFj,8yneMRkgyi.KMFfXhIuH.AxbBYTc6WwEVR+"
+      }
+    $type: |-
+      {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "next": {
+            "type": "string",
+            "format": "uri"
+          },
+          "previous": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 250,
+                  "title": "Title"
+                },
+                "content": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Content"
+                },
+                "category": {
+                  "type": "string",
+                  "title": "Category"
+                },
+                "published_date": {
+                  "type": "string",
+                  "title": "Published date",
+                  "format": "date-time"
+                },
+                "status": {
+                  "type": "boolean",
+                  "title": "Status"
+                }
+              },
+              "required": [
+                "title",
+                "content",
+                "category",
+                "published_date",
+                "status"
+              ]
+            }
+          }
+        },
+        "required": [
+          "count",
+          "results"
+        ]
+      }
+order: 1000

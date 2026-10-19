@@ -1,0 +1,15 @@
+$kind: collection
+description: |-
+  Test description
+
+  Contact Support:
+   Email: contact@snippets.local
+variables:
+  baseUrl: http://localhost:8000/blog/api/v1
+auth:
+  - id: af5c3df9-019c-4522-8785-0ba335780be1
+    type: basic
+    name: basic auth
+    credentials:
+      username: "{{basicAuthUsername}}"
+      password: "{{basicAuthPassword}}"

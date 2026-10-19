@@ -1,0 +1,86 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/post/:id/"
+  method: PATCH
+  headers:
+    - key: Content-Type
+      value: application/json
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Basic <credentials>
+      description: "Added as a part of security scheme: basic"
+  pathVariables:
+    - key: id
+      value: "8223"
+      disabled: false
+      description: A unique integer value identifying this post.
+  body:
+    type: json
+    content: |-
+      {
+        "title": "string",
+        "content": "string",
+        "category": "string",
+        "published_date": "1992-08-04T15:48:29.927Z",
+        "status": true
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "title": "string",
+        "content": "string",
+        "category": "string",
+        "published_date": "2000-12-02T09:01:40.663Z",
+        "status": true,
+        "id": 5140,
+        "author": 5315,
+        "snippet": "string",
+        "image": "http://MGkBESwkIuPnZKnI.thhkThw5CKnAXhS1",
+        "relative_url": "https://xUsKFOYY.hozeGY2F70r,cTXhLuCN2NdVWpFZxmJMlYjvp5",
+        "absolute_url": "string"
+      }
+    $type: |-
+      {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 250,
+            "title": "Title"
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Content"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "published_date": {
+            "type": "string",
+            "title": "Published date",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "boolean",
+            "title": "Status"
+          }
+        },
+        "required": [
+          "title",
+          "content",
+          "category",
+          "published_date",
+          "status"
+        ]
+      }
+order: 1000
