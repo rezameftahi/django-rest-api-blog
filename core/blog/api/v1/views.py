@@ -1,12 +1,19 @@
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import (
+    IsAuthenticated,
+    IsAdminUser,
+    IsAuthenticatedOrReadOnly,
+)
 from rest_framework.response import Response
 from .serializers import PostSerializer, CategorySerializer
 from ...models import Post, Category
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import (
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from rest_framework import mixins
 from rest_framework import viewsets
 from accounts.models import Profile
@@ -102,7 +109,7 @@ class PostDetail(RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.filter(status=True)
 '''
 
-'''class PostViewSet(viewsets.ViewSet):
+"""class PostViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
@@ -114,21 +121,27 @@ class PostDetail(RetrieveUpdateDestroyAPIView):
     def retrieve(self , request, pk=None):
         post_object = get_object_or_404(self.queryset, pk = pk)
         serializer = self.serializer_class(post_object)
-        return Response(serializer.data)'''
+        return Response(serializer.data)"""
+
 
 class PostModelViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated,IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    search_fields = ['title', 'content']
-    ordering_fields = ['published_date']
-    filterset_fields = {'category':["in", "exact"], 'author':["exact"], 'status':["exact"]}
+    search_fields = ["title", "content"]
+    ordering_fields = ["published_date"]
+    filterset_fields = {
+        "category": ["in", "exact"],
+        "author": ["exact"],
+        "status": ["exact"],
+    }
     pagination_class = DefaultPagination
+
     def perform_create(self, serializer):
-        profile = Profile.objects.get(
-        user=self.request.user)
+        profile = Profile.objects.get(user=self.request.user)
         serializer.save(author=profile)
+
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]

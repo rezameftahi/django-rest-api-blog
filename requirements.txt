@@ -11,3 +11,7 @@ markdown
 django-filter
 drf-yasg[validation]
 djangorestframework-simplejwt
+django-mail-templated
+djoser
+black
+flake8

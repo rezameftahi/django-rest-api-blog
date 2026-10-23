@@ -3,7 +3,17 @@ from .models import Post, Category
 
 # Register your models here.
 
+
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['auther', 'title', 'status', 'category', 'created_date', 'published_date']
+    list_display = [
+        "auther",
+        "title",
+        "status",
+        "category",
+        "created_date",
+        "published_date",
+    ]
+
+
 admin.site.register(Category)
 admin.site.register(Post)
