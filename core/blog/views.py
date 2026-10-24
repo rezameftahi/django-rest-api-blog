@@ -1,7 +1,4 @@
 from django.shortcuts import render
-from .models import Post
-from .forms import PostForm
-from django.http import HttpResponse
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -16,6 +13,9 @@ from django.contrib.auth.mixins import (
 )
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from .models import Post
+from .forms import PostForm
 
 
 # Create your views here.

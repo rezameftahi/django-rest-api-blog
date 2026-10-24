@@ -1,5 +1,4 @@
 from django.urls import path, include
-from .views import indexView
 from . import views
 from django.views.generic import TemplateView
 
@@ -14,9 +13,7 @@ urlpatterns = [
         ),
     ),
     # path('cbv-index', views.IndexView.as_view(), name='cbv-index'),
-    path(
-        "post/<int:pk>/", views.PostDetailView.as_view(), name="post-detail"
-    ),
+    path("post/<int:pk>/", views.PostDetailView.as_view(), name="post-detail"),
     path("post/create/", views.PostCreateView.as_view(), name="post-create"),
     path(
         "post/<int:pk>/update/",
