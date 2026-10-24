@@ -1,2 +1,4 @@
-from .users import *
-from .profiles import *
+from .users import User
+from .profiles import Profile
+
+__all__ = ["User", "Profile"]
