@@ -1,0 +1,830 @@
+swagger: '2.0'
+info:
+  title: Snippets API
+  description: Test description
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: contact@snippets.local
+  license:
+    name: BSD License
+  version: v1
+host: localhost:8000
+schemes:
+- http
+basePath: /
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+- Basic: []
+paths:
+  /accounts/api/v2/jwt/create/:
+    post:
+      operationId: accounts_api_v2_jwt_create_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/TokenObtainPair'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenObtainPair'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/jwt/refresh/:
+    post:
+      operationId: accounts_api_v2_jwt_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/TokenRefresh'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenRefresh'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/jwt/verify/:
+    post:
+      operationId: accounts_api_v2_jwt_verify_create
+      description: |-
+        Takes a token and indicates if it is valid.  This view provides no
+        information about a token's fitness for a particular use.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/TokenVerify'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenVerify'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/:
+    get:
+      operationId: accounts_api_v2_users_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+      tags:
+      - accounts
+    post:
+      operationId: accounts_api_v2_users_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/UserCreate'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/UserCreate'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/activation/:
+    post:
+      operationId: accounts_api_v2_users_activation
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Activation'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Activation'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/me/:
+    get:
+      operationId: accounts_api_v2_users_me_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+      tags:
+      - accounts
+    put:
+      operationId: accounts_api_v2_users_me_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - accounts
+    patch:
+      operationId: accounts_api_v2_users_me_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - accounts
+    delete:
+      operationId: accounts_api_v2_users_me_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/resend_activation/:
+    post:
+      operationId: accounts_api_v2_users_resend_activation
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/SendEmailReset'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/reset_email/:
+    post:
+      operationId: accounts_api_v2_users_reset_username
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/SendEmailReset'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/reset_email_confirm/:
+    post:
+      operationId: accounts_api_v2_users_reset_username_confirm
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/UsernameResetConfirm'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/UsernameResetConfirm'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/reset_password/:
+    post:
+      operationId: accounts_api_v2_users_reset_password
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/SendEmailReset'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/reset_password_confirm/:
+    post:
+      operationId: accounts_api_v2_users_reset_password_confirm
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/PasswordResetConfirm'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/PasswordResetConfirm'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/set_email/:
+    post:
+      operationId: accounts_api_v2_users_set_username
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/SetUsername'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SetUsername'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/set_password/:
+    post:
+      operationId: accounts_api_v2_users_set_password
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/SetPassword'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SetPassword'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/v2/users/{id}/:
+    get:
+      operationId: accounts_api_v2_users_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - accounts
+    put:
+      operationId: accounts_api_v2_users_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - accounts
+    patch:
+      operationId: accounts_api_v2_users_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - accounts
+    delete:
+      operationId: accounts_api_v2_users_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - accounts
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this user.
+      required: true
+      type: integer
+  /blog/api/v1/category/:
+    get:
+      operationId: blog_api_v1_category_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+      tags:
+      - blog
+    post:
+      operationId: blog_api_v1_category_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Category'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+      - blog
+    parameters: []
+  /blog/api/v1/category/{id}/:
+    get:
+      operationId: blog_api_v1_category_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+      - blog
+    put:
+      operationId: blog_api_v1_category_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Category'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+      - blog
+    patch:
+      operationId: blog_api_v1_category_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Category'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+      - blog
+    delete:
+      operationId: blog_api_v1_category_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - blog
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this category.
+      required: true
+      type: integer
+  /blog/api/v1/post/:
+    get:
+      operationId: blog_api_v1_post_list
+      description: ''
+      parameters:
+      - name: category__in
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: category
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: author
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: status
+        in: query
+        description: ''
+        required: false
+        type: string
+      - name: search
+        in: query
+        description: A search term.
+        required: false
+        type: string
+      - name: ordering
+        in: query
+        description: Which field to use when ordering the results.
+        required: false
+        type: string
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Post'
+      tags:
+      - blog
+    post:
+      operationId: blog_api_v1_post_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - blog
+    parameters: []
+  /blog/api/v1/post/{id}/:
+    get:
+      operationId: blog_api_v1_post_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - blog
+    put:
+      operationId: blog_api_v1_post_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - blog
+    patch:
+      operationId: blog_api_v1_post_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - blog
+    delete:
+      operationId: blog_api_v1_post_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - blog
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this post.
+      required: true
+      type: integer
+definitions:
+  TokenObtainPair:
+    required:
+    - email
+    - password
+    type: object
+    properties:
+      email:
+        title: Email
+        type: string
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  TokenRefresh:
+    required:
+    - refresh
+    type: object
+    properties:
+      refresh:
+        title: Refresh
+        type: string
+        minLength: 1
+      access:
+        title: Access
+        type: string
+        readOnly: true
+        minLength: 1
+  TokenVerify:
+    required:
+    - token
+    type: object
+    properties:
+      token:
+        title: Token
+        type: string
+        minLength: 1
+  User:
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      email:
+        title: Email
+        type: string
+        format: email
+        readOnly: true
+        minLength: 1
+  UserCreate:
+    required:
+    - email
+    - password
+    type: object
+    properties:
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 255
+        minLength: 1
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  Activation:
+    required:
+    - uid
+    - token
+    type: object
+    properties:
+      uid:
+        title: Uid
+        type: string
+        minLength: 1
+      token:
+        title: Token
+        type: string
+        minLength: 1
+  SendEmailReset:
+    required:
+    - email
+    type: object
+    properties:
+      email:
+        title: Email
+        type: string
+        format: email
+        minLength: 1
+  UsernameResetConfirm:
+    required:
+    - new_email
+    type: object
+    properties:
+      new_email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 255
+        minLength: 1
+  PasswordResetConfirm:
+    required:
+    - uid
+    - token
+    - new_password
+    type: object
+    properties:
+      uid:
+        title: Uid
+        type: string
+        minLength: 1
+      token:
+        title: Token
+        type: string
+        minLength: 1
+      new_password:
+        title: New password
+        type: string
+        minLength: 1
+  SetUsername:
+    required:
+    - current_password
+    - new_email
+    type: object
+    properties:
+      current_password:
+        title: Current password
+        type: string
+        minLength: 1
+      new_email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 255
+        minLength: 1
+  SetPassword:
+    required:
+    - new_password
+    - current_password
+    type: object
+    properties:
+      new_password:
+        title: New password
+        type: string
+        minLength: 1
+      current_password:
+        title: Current password
+        type: string
+        minLength: 1
+  Category:
+    required:
+    - name
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 250
+        minLength: 1
+  Post:
+    required:
+    - title
+    - content
+    - category
+    - published_date
+    - status
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      title:
+        title: Title
+        type: string
+        maxLength: 250
+        minLength: 1
+      author:
+        title: Author
+        type: integer
+        readOnly: true
+      snippet:
+        title: Snippet
+        type: string
+        readOnly: true
+      image:
+        title: Image
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
+      content:
+        title: Content
+        type: string
+        minLength: 1
+      category:
+        title: Category
+        type: string
+      relative_url:
+        title: Relative url
+        type: string
+        format: uri
+        readOnly: true
+        minLength: 1
+      absolute_url:
+        title: Absolute url
+        type: string
+        readOnly: true
+      published_date:
+        title: Published date
+        type: string
+        format: date-time
+      status:
+        title: Status
+        type: boolean
