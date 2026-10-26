@@ -8,7 +8,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
-from mail_templated import EmailMessage
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
 from django.conf import settings
@@ -24,6 +23,7 @@ from .serializers import (
 )
 from .utils import EmailThread
 from ...models import Profile
+from ...tasks import send_email_task
 
 User = get_user_model()
 
@@ -31,24 +31,34 @@ User = get_user_model()
 class RegistrationApiView(generics.GenericAPIView):
     serializer_class = RegistrationSerializer
 
+
     def post(self, request, *args, **kwargs):
-        serializer = RegistrationSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
+
         if serializer.is_valid():
             serializer.save()
-            data = {"email": serializer.validated_data["email"]}
+
             email = serializer.validated_data["email"]
             user_obj = get_object_or_404(User, email=email)
             token = self.get_tokens_for_user(user_obj)
-            email_obj = EmailMessage(
+
+            send_email_task.delay(
                 "email/activation_email.tpl",
                 {"token": token},
                 "admin@admin.com",
-                to=[email],
+                [email],
             )
-            # TODO: Add more useful commands here.
-            EmailThread(email_obj).start()
-            return Response(data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            return Response(
+                {"email": email},
+                status=status.HTTP_201_CREATED,
+            )
+
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
 
     def get_tokens_for_user(self, user):
         # if not user.is_active:
@@ -131,14 +141,12 @@ class TestEmailSend(generics.GenericAPIView):
         self.email = "reza776m@gmail.com"
         user_obj = get_object_or_404(User, email=self.email)
         token = self.get_tokens_for_user(user_obj)
-        email_obj = EmailMessage(
+        send_email_task.delay(
             "email/hello.tpl",
             {"token": token},
             "admin@admin.com",
-            to=[self.email],
-        )
-        # TODO: Add more useful commands here.
-        EmailThread(email_obj).start()
+            [self.email],
+)
 
         return Response("email sent.")
 
@@ -193,14 +201,12 @@ class ActivationResendApiView(generics.GenericAPIView):
         user_obj = serializer.validated_data["user"]
         token = self.get_tokens_for_user(user_obj)
 
-        email_obj = EmailMessage(
+        send_email_task.delay(
             "email/activation_email.tpl",
             {"token": token},
             "admin@admin.com",
-            to=[user_obj.email],
+            [user_obj.email],
         )
-
-        EmailThread(email_obj).start()
 
         return Response(
             {"details": "Activation email sent successfully"},
