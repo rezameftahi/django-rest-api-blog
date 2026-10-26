@@ -12,7 +12,10 @@ class testPostmodel(TestCase):
             email="tets@test.com", password="2/123456@m"
         )
         self.profile = Profile.objects.create(
-            user=self.user, first_name="Reza", last_name="Meftahi", description="test"
+            user=self.user,
+            first_name="Reza",
+            last_name="Meftahi",
+            description="test",
         )
 
     def test_create_post_with_valid_data(self):

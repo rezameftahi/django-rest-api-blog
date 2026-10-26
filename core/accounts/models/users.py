@@ -10,7 +10,8 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class UserManager(BaseUserManager):
     """
-    custom user model manager where email is the uniqe identifires for authentication instead of usernames
+    custom user model manager where email is the uniqe identifires for
+    authentication instead of usernames
     """
 
     def create_user(self, email, password, **extra_fields):
@@ -27,7 +28,8 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, email, password, **extra_fields):
         """
-        create and save a superUser with the given email and password and extra data
+        create and save a superUser with the given
+        email and password and extra data
         """
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)

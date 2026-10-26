@@ -15,7 +15,10 @@ class TestBlogView(TestCase):
         )
         self.category_obj = Category.objects.create(name="hello")
         self.profile = Profile.objects.create(
-            user=self.user, first_name="Reza", last_name="Meftahi", description="test"
+            user=self.user,
+            first_name="Reza",
+            last_name="Meftahi",
+            description="test",
         )
 
         self.post = Post.objects.create(
