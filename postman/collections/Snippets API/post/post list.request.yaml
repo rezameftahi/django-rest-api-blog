@@ -1,48 +1,16 @@
 $kind: http-request
 description: ""
-url: "{{baseUrl}}/post/?category__in=string&category=string&author=string&status=string&search=string&ordering=string&page=8223"
+url: "{{baseUrl}}/post"
 method: GET
 headers:
   Accept: application/json
-queryParams:
-  - key: category__in
-    value: string
-    disabled: false
-    description: ""
-    $type: string
-  - key: category
-    value: string
-    disabled: false
-    description: ""
-    $type: string
-  - key: author
-    value: string
-    disabled: false
-    description: ""
-    $type: string
-  - key: status
-    value: string
-    disabled: false
-    description: ""
-    $type: string
-  - key: search
-    value: string
-    disabled: false
-    description: A search term.
-    $type: string
-  - key: ordering
-    value: string
-    disabled: false
-    description: Which field to use when ordering the results.
-    $type: string
-  - key: page
-    value: "8223"
-    disabled: false
-    description: A page number within the paginated result set.
-    $type: integer
 body:
   type: text
   content: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0bzg}}"
 settings: {}
 examples: ./.resources/post list.resources/examples
 order: 1000

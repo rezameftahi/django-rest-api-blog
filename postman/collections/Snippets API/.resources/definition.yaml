@@ -5,7 +5,12 @@ description: |-
   Contact Support:
    Email: contact@snippets.local
 variables:
-  baseUrl: http://localhost:8000/blog/api/v1
+  - key: baseUrl
+    value: http://localhost:8000/blog/api/v1
+    disabled: false
+  - key: json_web_token_0bzg
+    secret: true
+    disabled: false
 auth:
   - id: af5c3df9-019c-4522-8785-0ba335780be1
     type: basic

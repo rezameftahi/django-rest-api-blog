@@ -1,0 +1,15 @@
+id: 01a17cd8-9c2d-7082-b8f8-467c118d090a
+version: 1
+name: New Mock
+slug: new-mock-8ddcb
+enableSession: true
+protocol: http
+port: 4500
+autoRestartOnChange: true
+logging:
+  level: verbose
+  showBody: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true

@@ -1,0 +1,15 @@
+id: 01a17cd7-a4fb-7722-9aed-df356c27e456
+version: 1
+name: New Mock
+slug: new-mock-cdfb9
+enableSession: true
+protocol: http
+port: 4500
+autoRestartOnChange: true
+logging:
+  level: verbose
+  showBody: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true

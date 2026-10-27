@@ -1,0 +1,14 @@
+$kind: http-request
+name: http://localhost:8000/accounts/api/v1/token/logout/
+description: ""
+url: http://localhost:8000/accounts/api/v1/token/logout/
+method: POST
+body:
+  type: json
+  content: ""
+auth:
+  type: apikey
+  credentials:
+    key: Authorization
+    value: Token 0dae01da446a6848c997344484493d7c8e6a0b25
+order: 6000
