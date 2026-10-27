@@ -21,7 +21,6 @@ from .serializers import (
     ProfileSerializer,
     ActivationResendSerializer,
 )
-from .utils import EmailThread
 from ...models import Profile
 from ...tasks import send_email_task
 
@@ -30,7 +29,6 @@ User = get_user_model()
 
 class RegistrationApiView(generics.GenericAPIView):
     serializer_class = RegistrationSerializer
-
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -58,7 +56,6 @@ class RegistrationApiView(generics.GenericAPIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST,
         )
-
 
     def get_tokens_for_user(self, user):
         # if not user.is_active:
@@ -146,7 +143,7 @@ class TestEmailSend(generics.GenericAPIView):
             {"token": token},
             "admin@admin.com",
             [self.email],
-)
+        )
 
         return Response("email sent.")
 
